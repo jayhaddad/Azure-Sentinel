@@ -36,7 +36,7 @@
         {
             "condition": "[parameters('enableUeba')]",
             "type": "Microsoft.SecurityInsights/settings",
-            "apiVersion": "2022-12-01-preview",
+            "apiVersion": "2023-02-01-preview",
             "name": "EntityAnalytics",
             "kind": "EntityAnalytics",
             "scope": "[concat('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]",
