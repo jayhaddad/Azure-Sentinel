@@ -35,9 +35,23 @@
     "resources": [
         {
             "condition": "[parameters('enableUeba')]",
+            "type": "Microsoft.SecurityInsights/settings",
+            "apiVersion": "2023-02-01-preview",
+            "name": "EntityAnalytics",
+            "kind": "EntityAnalytics",
+            "scope": "[concat('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]",
+            "properties": {
+                "entityProviders": "[parameters('identityProviders')]"
+            }
+        },
+        {
+            "condition": "[parameters('enableUeba')]",
             "type": "Microsoft.OperationsManagement/solutions",
             "apiVersion": "2015-11-01-preview",
             "name": "[concat('BehaviorAnalyticsInsights','(', parameters('workspaceName'),')')]",
+            "dependsOn": [
+                "EntityAnalytics"
+            ],
             "location": "[resourceGroup().location]",
             "properties":{
                 "workspaceResourceId":"[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"    
@@ -73,20 +87,6 @@
                         "enabled": true
                     }
                 ]
-            }
-        },
-        {
-            "condition": "[parameters('enableUeba')]",
-            "type": "Microsoft.SecurityInsights/settings",
-            "apiVersion": "2023-02-01-preview",
-            "name": "EntityAnalytics",
-            "kind": "EntityAnalytics",
-            "dependsOn": [
-                "[concat(parameters('workspaceName'),'/Microsoft.SecurityInsights', '/SentinelHealth', '/Microsoft.Insights/', parameters('settingName'))]"
-            ],
-            "scope": "[concat('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]",
-            "properties": {
-                "entityProviders": "[parameters('identityProviders')]"
             }
         }
     ],
