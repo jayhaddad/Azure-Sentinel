@@ -145,10 +145,6 @@
                     "enabled": "[contains(parameters('aadStreams'),'ManagedIdentitySignInLogs')]"
                 },
                 {
-                    "category": "ProvisioningLogs",
-                    "enabled": "[contains(parameters('aadStreams'),'ProvisioningLogs')]"
-                },
-                {
                     "category": "ADFSSignInLogs",
                     "enabled": "[contains(parameters('aadStreams'),'ADFSSignInLogs')]"
                 },
@@ -159,10 +155,6 @@
                 {
                     "category": "RiskyUsers",
                     "enabled": "[contains(parameters('aadStreams'),'RiskyUsers')]"
-                },
-                {
-                    "category": "NetworkAccessTrafficLogs",
-                    "enabled": "[contains(parameters('aadStreams'),'NetworkAccessTrafficLogs')]"
                 },
                 {
                     "category": "RiskyServicePrincipals",
