@@ -277,7 +277,8 @@
             "resourceGroup": "[parameters('rgName')]",
             "dependsOn": [
                 "workspaceCreation",
-                "[resourceId('Microsoft.Resources/resourceGroups',parameters('rgName'))]"
+                "[resourceId('Microsoft.Resources/resourceGroups',parameters('rgName'))]",
+                "settings"
             ],
             "properties": {
                 "mode": "Incremental",
